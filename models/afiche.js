@@ -4,11 +4,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const AficheSchema = Schema({
-  nombre: String,
-  descripcion: String,
-  img: String,
-  seccion: { type: Schema.ObjectId, ref: "Seccion" },
-  palabras: [{ type: Schema.ObjectId, ref: "PalabraSchema"}]
+  name: {type:String, require:true},
+  small: {type:String},
+  medium: {type:String},
+  big: {type:String},
+  description: {type:String},
+  section: { type: Schema.ObjectId, ref: "Seccion" },
+  keys: [{ type: Schema.ObjectId, ref: "Palabra"}]
 })
 
 module.exports = mongoose.model('Afiche', AficheSchema)

@@ -29,11 +29,13 @@ function saveAfiche(req, res){
   console.log(req.body)
 
   let afiche = new Afiche()
-  afiche.nombre = req.body.nombre
-  afiche.descripcion = req.body.descripcion
-  afiche.img = req.body.img
-  afiche.seccion = req.body.seccion
-  afiche.palabras = req.body.palabras
+  afiche.name = req.body.name
+  afiche.description = req.body.description
+  afiche.small = req.body.small
+  afiche.medium = req.body.medium
+  afiche.big = req.body.big
+  afiche.section = req.body.section
+  afiche.keys = req.body.palabras
 
   // mongodb le asigna un id único por defecto
   afiche.save((err, eltoStored) => {
@@ -67,10 +69,19 @@ function deleteAfiche (req, res) {
   })
 }
 
+function getCompas (req, res) {
+  Afiche.find({}, (err, afiches) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+    res.status(200).send({afiches: afiches})
+}).select({small:1, big:1});
+}
+
 module.exports = {
   getAfiche,
   getAfiches,
   saveAfiche,
   updateAfiche,
-  deleteAfiche
+  deleteAfiche,
+  getCompas
 }
