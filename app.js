@@ -24,7 +24,8 @@ app.use(function(req, res, next) { //allow cross origin requests
                         /*      PETICIONES PARA ABM     */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 // Afiches
-app.get('/api/afiche/', aficheCtrl.getAfiches)
+// app.get('/api/afiche/', aficheCtrl.getAfiches)
+app.get('/api/afiche/', aficheCtrl.getCompas)
 app.get('/api/afiche/:aficheId', aficheCtrl.getAfiche)
 app.post('/api/afiche/', aficheCtrl.saveAfiche)
 app.put('/api/afiche/:aficheId', aficheCtrl.updateAfiche)

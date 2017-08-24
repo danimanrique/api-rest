@@ -1,6 +1,7 @@
 'use strict'
 // Modelos
 const Afiche = require('../models/afiche')
+const Seccion = require('../models/seccion')
 
 function getAfiche (req, res) {
   let aficheId = req.params.aficheId
@@ -8,8 +9,9 @@ function getAfiche (req, res) {
   Afiche.findById(aficheId, (err, elto) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!elto) return res.status(404).send({message: 'El afiche no existe'})
-
-    res.status(200).send({afiche: elto})
+    Seccion.populate(elto, {path: "section"},function(err, elto){
+        	res.status(200).send({afiche: elto})
+        });
   })
 }
 
@@ -73,7 +75,9 @@ function getCompas (req, res) {
   Afiche.find({}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    res.status(200).send({afiches: afiches})
+    Seccion.populate(afiches, {path: "section"},function(err, libros){
+        	res.status(200).send({afiches: afiches})
+        });
 }).select({small:1, big:1});
 }
 

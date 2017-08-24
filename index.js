@@ -6,7 +6,8 @@ const app = require('./app')
 // define al puerto como variable de entorno o por defecto
 const port = process.env.PORT || 3002
 
-mongoose.connect('mongodb://localhost:27017/gallery', (err, res) => {
+// mongoose.connect('mongodb://username:password@host:port/database?options...');
+mongoose.connect('mongodb://localhost:27017/galery', (err, res) => {
   if(err){
     return console.log(`Error al conectar la base de datos: ${err}`)
   }
