@@ -71,8 +71,18 @@ function deleteAfiche (req, res) {
   })
 }
 
+function getEstado (req, res) {
+  Afiche.find({"section":"599705a07820ca046beb08bd"}, (err, afiches) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+    Seccion.populate(afiches, {path: "section"},function(err, libros){
+        	res.status(200).send({afiches: afiches})
+        });
+}).select({name:1, big:1});
+}
+
 function getCompas (req, res) {
-  Afiche.find({"section":"598380dd99d6062be3d8ffa1"}, (err, afiches) => {
+  Afiche.find({"section":"5997063c7820ca046beb08be"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "section"},function(err, libros){
@@ -81,11 +91,45 @@ function getCompas (req, res) {
 }).select({small:1, big:1});
 }
 
+function getImpunidad (req, res) {
+  Afiche.find({"section":"599706527820ca046beb08bf"}, (err, afiches) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+    Seccion.populate(afiches, {path: "section"},function(err, libros){
+        	res.status(200).send({afiches: afiches})
+        });
+}).select({name:1, big:1});
+}
+
+function getNeuquen (req, res) {
+  Afiche.find({"section":"599706c17820ca046beb08c1"}, (err, afiches) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+    Seccion.populate(afiches, {path: "section"},function(err, libros){
+        	res.status(200).send({afiches: afiches})
+        });
+}).select({small:1, big:1, medium: 1, name: 1});
+}
+
+function getBahia (req, res) {
+  Afiche.find({"section":"599706b77820ca046beb08c0"}, (err, afiches) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+    Seccion.populate(afiches, {path: "section"},function(err, libros){
+        	res.status(200).send({afiches: afiches})
+        });
+}).select({small:1, big:1, medium: 1, name: 1});
+}
+
 module.exports = {
   getAfiche,
   getAfiches,
   saveAfiche,
   updateAfiche,
   deleteAfiche,
-  getCompas
+  getEstado,
+  getCompas,
+  getImpunidad,
+  getNeuquen,
+  getBahia
 }

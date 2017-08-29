@@ -47,11 +47,11 @@ app.delete('/api/palabra/:palabraId', palabraCtrl.deletePalabra)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
                         /*      PETICIONES PARA APP    */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-// app.get('/api/estado/', aficheCtrl.getEstado)
+app.get('/api/estado/', aficheCtrl.getEstado)
 app.get('/api/compas/', aficheCtrl.getCompas)
-// app.get('/api/impunidad/', aficheCtrl.getImpunidad)
-// app.get('/api/bahia/', aficheCtrl.getBahia)
-// app.get('/api/neuquen/', aficheCtrl.getNeuquen)
+app.get('/api/impunidad/', aficheCtrl.getImpunidad)
+app.get('/api/bahia/', aficheCtrl.getBahia)
+app.get('/api/neuquen/', aficheCtrl.getNeuquen)
 
 
 module.exports = app
