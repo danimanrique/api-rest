@@ -72,10 +72,10 @@ function deleteAfiche (req, res) {
 }
 
 function getCompas (req, res) {
-  Afiche.find({"section":"598380dd99d6062be3d8ffa1"}, (err, afiches) => {
+  Afiche.find({"seccion":"5997063c7820ca046beb08be"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "section"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1});
