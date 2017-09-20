@@ -84,7 +84,7 @@ function deleteAfiche (req, res) {
 /* --------------------------------------------------------------------------------*/
 
 function getEstado (req, res) {
-  Palabra.find({"seccion":array_secc[0]}, (err, afiches) => {
+  Afiche.find({"seccion":"599705a07820ca046beb08bd"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, elto){
@@ -94,7 +94,7 @@ function getEstado (req, res) {
 }
 
 function getCompas (req, res) {
-  Afiche.find({"seccion":array_secc[1]}, (err, afiches) => {
+  Afiche.find({"seccion":"5997063c7820ca046beb08be"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, elto){
@@ -104,7 +104,7 @@ function getCompas (req, res) {
 }
 
 function getImpunidad (req, res) {
-  Afiche.find({"seccion":array_secc[2]}, (err, afiches) => {
+  Afiche.find({"seccion":"599706527820ca046beb08bf"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, elto){
@@ -114,7 +114,7 @@ function getImpunidad (req, res) {
 }
 
 function getBahia (req, res) {
-  Afiche.find({"seccion":array_secc[3]}, (err, afiches) => {
+  Afiche.find({"seccion":"599706c17820ca046beb08c1"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, elto){
@@ -124,7 +124,7 @@ function getBahia (req, res) {
 }
 
 function getNeuquen (req, res) {
-  Afiche.find({"seccion":array_secc[4]}, (err, afiches) => {
+  Afiche.find({"seccion":"599706b77820ca046beb08c0"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, elto){
