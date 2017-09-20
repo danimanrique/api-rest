@@ -9,7 +9,7 @@ function getAfiche (req, res) {
   Afiche.findById(aficheId, (err, elto) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!elto) return res.status(404).send({message: 'El afiche no existe'})
-    Seccion.populate(elto, {path: "section"},function(err, elto){
+    Seccion.populate(elto, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiche: elto})
         });
   })
@@ -36,7 +36,7 @@ function saveAfiche(req, res){
   afiche.small = req.body.small
   afiche.medium = req.body.medium
   afiche.big = req.body.big
-  afiche.section = req.body.section
+  afiche.seccion = req.body.seccion
   afiche.keys = req.body.palabras
 
   // mongodb le asigna un id único por defecto
@@ -72,10 +72,10 @@ function deleteAfiche (req, res) {
 }
 
 function getEstado (req, res) {
-  Afiche.find({"section":"599705a07820ca046beb08bd"}, (err, afiches) => {
+  Afiche.find({"seccion":"599705a07820ca046beb08bd"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "section"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
@@ -92,30 +92,30 @@ function getCompas (req, res) {
 }
 
 function getImpunidad (req, res) {
-  Afiche.find({"section":"599706527820ca046beb08bf"}, (err, afiches) => {
+  Afiche.find({"seccion":"599706527820ca046beb08bf"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "section"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
 }
 
 function getNeuquen (req, res) {
-  Afiche.find({"section":"599706c17820ca046beb08c1"}, (err, afiches) => {
+  Afiche.find({"seccion":"599706c17820ca046beb08c1"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "section"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
 }
 
 function getBahia (req, res) {
-  Afiche.find({"section":"599706b77820ca046beb08c0"}, (err, afiches) => {
+  Afiche.find({"seccion":"599706b77820ca046beb08c0"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "section"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
