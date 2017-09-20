@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-const palabraCtrl = require('./controllers/palabraController')
 const aficheCtrl = require('./controllers/aficheController')
 const seccionCtrl = require('./controllers/seccionController')
 
@@ -36,12 +35,6 @@ app.get('/api/seccion/:victimaId', seccionCtrl.getSeccion)
 app.post('/api/seccion/', seccionCtrl.saveSeccion)
 app.put('/api/seccion/:victimaId', seccionCtrl.updateSeccion)
 app.delete('/api/seccion/:victimaId', seccionCtrl.deleteSeccion)
-// Palabras claves
-app.get('/api/palabra/', palabraCtrl.getPalabras)
-app.get('/api/palabra/:palabraId', palabraCtrl.getPalabra)
-app.post('/api/palabra/', palabraCtrl.savePalabra)
-app.put('/api/palabra/:palabraId', palabraCtrl.updatePalabra)
-app.delete('/api/palabra/:palabraId', palabraCtrl.deletePalabra)
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -52,6 +45,8 @@ app.get('/api/compas/', aficheCtrl.getCompas)
 app.get('/api/impunidad/', aficheCtrl.getImpunidad)
 app.get('/api/bahia/', aficheCtrl.getBahia)
 app.get('/api/neuquen/', aficheCtrl.getNeuquen)
+app.get('/api/busqueda/:arreglo', aficheCtrl.getBusqueda)
+
 
 
 module.exports = app

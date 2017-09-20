@@ -71,6 +71,10 @@ function deleteAfiche (req, res) {
   })
 }
 
+/* ------------------------------------------------------------------------------- */
+/*                           PETICIONES PARA GALERIAS                              */
+/* --------------------------------------------------------------------------------*/
+
 function getEstado (req, res) {
   Afiche.find({"seccion":"599705a07820ca046beb08bd"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
@@ -121,6 +125,20 @@ function getBahia (req, res) {
 }).select({small:1, big:1, medium: 1, name: 1});
 }
 
+/* ------------------------------------------------------------------------------- */
+/*                           PETICION SECCION BUSQUEDA                             */
+/* --------------------------------------------------------------------------------*/
+function getBusqueda (req, res) {
+  var arreglo = (req.params.arreglo).split(',');
+  Afiche.find({}, (err, afiches) => {
+        if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+        if(!afiches) return res.status(404).send({message: 'No existen afiches'})
+        res.status(200).send({afiches: afiches})
+    }).where('keys').in(arreglo);
+}
+
+
+
 module.exports = {
   getAfiche,
   getAfiches,
@@ -131,5 +149,6 @@ module.exports = {
   getCompas,
   getImpunidad,
   getNeuquen,
-  getBahia
+  getBahia,
+  getBusqueda
 }
