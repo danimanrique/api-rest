@@ -3,6 +3,14 @@
 const Afiche = require('../models/afiche')
 const Seccion = require('../models/seccion')
 
+const array_secc = [
+    "599705a07820ca046beb08bd", //Estado Terrorista
+    "5997063c7820ca046beb08be", //Nuestros Compañeros
+    "599706527820ca046beb08bf", //Todos Contra la impunidad
+    "599706c17820ca046beb08c1", //Juicios Bahía
+    "599706b77820ca046beb08c0" //Juicios Neuquén
+]
+
 function getAfiche (req, res) {
   let aficheId = req.params.aficheId
 
@@ -76,50 +84,50 @@ function deleteAfiche (req, res) {
 /* --------------------------------------------------------------------------------*/
 
 function getEstado (req, res) {
-  Palabra.find({"seccion":"599705a07820ca046beb08bd"}, (err, afiches) => {
+  Palabra.find({"seccion":array_secc[0]}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
 }
 
 function getCompas (req, res) {
-  Afiche.find({"seccion":"5997063c7820ca046beb08be"}, (err, afiches) => {
+  Afiche.find({"seccion":array_secc[1]}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1});
 }
 
 function getImpunidad (req, res) {
-  Afiche.find({"seccion":"599706527820ca046beb08bf"}, (err, afiches) => {
+  Afiche.find({"seccion":array_secc[2]}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
 }
 
-function getNeuquen (req, res) {
-  Afiche.find({"seccion":"599706c17820ca046beb08c1"}, (err, afiches) => {
+function getBahia (req, res) {
+  Afiche.find({"seccion":array_secc[3]}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
 }
 
-function getBahia (req, res) {
-  Afiche.find({"seccion":"599706b77820ca046beb08c0"}, (err, afiches) => {
+function getNeuquen (req, res) {
+  Afiche.find({"seccion":array_secc[4]}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, libros){
+    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
@@ -129,15 +137,20 @@ function getBahia (req, res) {
 /*                           PETICION SECCION BUSQUEDA                             */
 /* --------------------------------------------------------------------------------*/
 function getBusqueda (req, res) {
-  var arreglo = (req.params.arreglo).split(',');
-  Afiche.find({}, (err, afiches) => {
+  var arreglo = (req.params.arreglo).split(',')
+  var secciones = (req.params.secciones).split(',')
+  var secId = []
+  for(let i=0; i<5;i++){
+      if(secciones[i]=="true"){
+          secId.push(array_secc[i])
+     }
+  }
+  Afiche.find({seccion: {$in: secId}}, (err, afiches) => {
         if(err) return res.status(500).send({message: 'Error al realizar la operación'})
         if(!afiches) return res.status(404).send({message: 'No existen afiches'})
         res.status(200).send({afiches: afiches})
     }).where('keys').in(arreglo);
 }
-
-
 
 module.exports = {
   getAfiche,
