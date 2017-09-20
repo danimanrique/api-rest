@@ -45,7 +45,7 @@ app.get('/api/compas/', aficheCtrl.getCompas)
 app.get('/api/impunidad/', aficheCtrl.getImpunidad)
 app.get('/api/bahia/', aficheCtrl.getBahia)
 app.get('/api/neuquen/', aficheCtrl.getNeuquen)
-app.get('/api/busqueda/:arreglo', aficheCtrl.getBusqueda)
+app.get('/api/busqueda/:arreglo/:secciones', aficheCtrl.getBusqueda)
 
 
 
