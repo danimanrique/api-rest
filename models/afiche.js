@@ -9,8 +9,8 @@ const AficheSchema = Schema({
   medium: {type:String},
   big: {type:String},
   description: {type:String},
-  section: { type: Schema.ObjectId, ref: "Seccion" },
-  keys: [{ type: Schema.ObjectId, ref: "Palabra"}]
+  seccion: { type: Schema.ObjectId, ref: "Seccion" },
+  keys: [{ type: String }]
 })
 
 module.exports = mongoose.model('Afiche', AficheSchema)
