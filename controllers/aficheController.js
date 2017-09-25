@@ -7,8 +7,8 @@ const array_secc = [
     "599705a07820ca046beb08bd", //Estado Terrorista
     "5997063c7820ca046beb08be", //Nuestros Compañeros
     "599706527820ca046beb08bf", //Todos Contra la impunidad
-    "599706c17820ca046beb08c1", //Juicios Bahía
-    "599706b77820ca046beb08c0" //Juicios Neuquén
+    "599706b77820ca046beb08c0", //Juicios Bahía
+    "599706c17820ca046beb08c1" //Juicios Neuquén
 ]
 
 function getAfiche (req, res) {
@@ -87,7 +87,7 @@ function getEstado (req, res) {
   Afiche.find({"seccion":"599705a07820ca046beb08bd"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
@@ -97,37 +97,37 @@ function getCompas (req, res) {
   Afiche.find({"seccion":"5997063c7820ca046beb08be"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
-}).select({small:1, big:1});
+}).select({small:1, big:1}).sort('name');
 }
 
 function getImpunidad (req, res) {
   Afiche.find({"seccion":"599706527820ca046beb08bf"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
 }).select({name:1, big:1});
 }
 
 function getBahia (req, res) {
-  Afiche.find({"seccion":"599706c17820ca046beb08c1"}, (err, afiches) => {
+  Afiche.find({"seccion":"599706b77820ca046beb08c0"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
 }
 
 function getNeuquen (req, res) {
-  Afiche.find({"seccion":"599706b77820ca046beb08c0"}, (err, afiches) => {
+  Afiche.find({seccion: "599706c17820ca046beb08c1"}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
-    Seccion.populate(afiches, {path: "seccion"},function(err, elto){
+    Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
 }).select({small:1, big:1, medium: 1, name: 1});
