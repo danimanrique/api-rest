@@ -19,6 +19,22 @@ app.use(function(req, res, next) { //allow cross origin requests
     next();
 });
 
+app.get('/api/home', function home(req, res){
+  console.log("Existe conexion con API")
+  res.status(200).send({message: "Hay conexión con API"})
+})
+
+function home (req, res) {
+  let aficheId = req.params.aficheId
+
+  Afiche.findById(aficheId, (err, elto) => {
+    if(err) return res.status(500).send({message: 'Error al realizar la operación'})
+    if(!elto) return res.status(404).send({message: 'El afiche no existe'})
+    Seccion.populate(elto, {path: "seccion"},function(err, elto){
+        	res.status(200).send({afiche: elto})
+        });
+  })
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
                         /*      PETICIONES PARA ABM     */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
