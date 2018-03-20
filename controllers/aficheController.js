@@ -90,11 +90,11 @@ function getEstado (req, res) {
     Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
-}).select({name:1, big:1});
+}).select({name:1, big:1}).sort('orden');
 }
 
 function getCompas (req, res) {
-  Afiche.find({"seccion":"5997063c7820ca046beb08be"}, (err, afiches) => {
+  Afiche.find({"seccion":"5997063c7820ca046beb08be", "name": { $ne: "Presos Politicos" }}, (err, afiches) => {
     if(err) return res.status(500).send({message: 'Error al realizar la operación'})
     if(!afiches) return res.status(404).send({message: 'No existen afiches'})
     Seccion.populate(afiches, {path: "seccion"},function(err, libro){
@@ -110,7 +110,7 @@ function getImpunidad (req, res) {
     Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
-}).select({name:1, big:1});
+}).select({name:1, big:1}).sort('orden');
 }
 
 function getBahia (req, res) {
@@ -120,7 +120,7 @@ function getBahia (req, res) {
     Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
-}).select({small:1, big:1, medium: 1, name: 1});
+}).select({small:1, big:1, medium: 1, name: 1}).sort('orden');
 }
 
 function getNeuquen (req, res) {
@@ -130,7 +130,7 @@ function getNeuquen (req, res) {
     Seccion.populate(afiches, {path: "seccion"},function(err, libro){
         	res.status(200).send({afiches: afiches})
         });
-}).select({small:1, big:1, medium: 1, name: 1});
+}).select({small:1, big:1, medium: 1, name: 1}).sort('orden');
 }
 
 /* ------------------------------------------------------------------------------- */

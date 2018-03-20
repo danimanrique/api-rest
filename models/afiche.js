@@ -10,7 +10,8 @@ const AficheSchema = Schema({
   big: {type:String},
   description: {type:String},
   seccion: { type: Schema.ObjectId, ref: "Seccion" },
-  keys: [{ type: String }]
+  keys: [{ type: String }],
+  orden: Number
 })
 
 module.exports = mongoose.model('Afiche', AficheSchema)
