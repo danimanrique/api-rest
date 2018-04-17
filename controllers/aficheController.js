@@ -149,7 +149,7 @@ function getBusqueda (req, res) {
         if(err) return res.status(500).send({message: 'Error al realizar la operación'})
         if(!afiches) return res.status(404).send({message: 'No existen afiches'})
         res.status(200).send({afiches: afiches})
-    }).where('keys').in(arreglo);
+    }).where('keys').all(arreglo);
 }
 
 module.exports = {
